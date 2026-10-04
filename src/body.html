@@ -1,0 +1,46 @@
+<main class="page" dir="rtl" lang="he">
+  <header class="hero">
+    <p class="eyebrow"><span>Bar Achdut · Senior Software Engineer · AI Systems</span></p>
+    <h1 id="h1">מאיזו חברה הגעת?</h1>
+    <p class="sub" id="sub">כתבו את שם החברה, וקורות החיים שלי יתלבשו בצבעים ובפונט שלה.</p>
+    <div class="ask">
+      <form id="askForm" role="search" autocomplete="off">
+        <input id="co" type="text" dir="auto" placeholder="שם החברה" aria-label="שם החברה" role="combobox" aria-autocomplete="list" aria-controls="sugg" aria-expanded="false" enterkeyhint="go" spellcheck="false">
+        <button class="btn brand" type="submit" id="goBtn">הצג</button>
+      </form>
+      <ul class="sugg" id="sugg" role="listbox" aria-label="חברות" hidden></ul>
+    </div>
+    <p class="hint" id="hint"></p>
+  </header>
+
+  <nav class="actions" aria-label="פעולות">
+    <button class="btn brand" id="pdfBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+      <span class="l-long">הורדת קורות חיים</span><span class="l-short">הורדה</span>
+    </button>
+    <a class="btn ghost" id="waBtn" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12Z"/></svg>
+      <span>וואטסאפ</span>
+    </a>
+    <a class="btn ghost" id="mailBtn" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+      <span>מייל</span>
+    </a>
+    <a class="btn ghost opt" id="telBtn" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      <span>טלפון</span>
+    </a>
+    <a class="btn ghost opt" id="liBtn" href="#" target="_blank" rel="noopener" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      <span>לינקדאין</span>
+    </a>
+  </nav>
+
+  <div class="sheet-wrap"><article class="sheet" id="sheet" dir="ltr" lang="en"></article></div>
+
+  <footer class="foot">
+    <p>את הכלי הזה בניתי בעצמי, כדי שקורות החיים יגיעו אליכם קצת יותר אישיים.</p>
+    <div class="contact"><span id="fEmail"></span><span id="fPhone"></span></div>
+  </footer>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
