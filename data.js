@@ -34,7 +34,7 @@ const CV = {
       "Negotiated and signed a payment-processing partnership with Cardcom, embedding automated collections and dunning into the product as a primary revenue layer.",
       "Owned the full commercial stack alongside the technical one: competitive analysis, pricing and packaging, PRD, sales pipeline and enterprise-prospect security reviews (data residency, retention, reconciliation)."
     ] },
-    { role: "Founder", org: "AI Automation Consulting · TagMeUp", context: "", dates: "01/2025 – Present", bullets: [
+    { role: "Founder", org: "AI Automation Consulting", context: "", dates: "01/2025 – Present", bullets: [
       "Deliver AI and automation systems to non-technical Israeli companies — scoping, building and handing off production workflows on n8n and Make.com with fixed build fee plus retainer.",
       "Architected an air-gapped incident-investigation agent system for a defense-adjacent environment, delivered as an executive-level architecture proposal.",
       "Packaged repeatable internal tooling as reusable agent skills (document generation, media conversion, pipeline analysis), cutting recurring delivery time to near zero."
