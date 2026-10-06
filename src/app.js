@@ -114,7 +114,7 @@
       document.title = `Bar Achdut · CV for ${S.label}`;
     } else {
       h1.textContent = "היי, מאיזו חברה הגעת?";
-      sub.textContent = "תודה שנכנסת! אני בר, ומבטיח לא לגזול לך הרבה זמן.";
+      sub.textContent = "תודה שנכנסת! אני בר, ומבטיח שזה ייקח רק דקה.";
       document.title = "Bar Achdut · CV";
     }
     updateLinks();
