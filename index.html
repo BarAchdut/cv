@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Bar Achdut · CV</title>
-<meta name="description" content="כתבו את שם החברה שלכם, וקורות החיים שלי יתלבשו בצבעים ובפונט שלה.">
+<meta name="description" content="קורות החיים של בר אחדות, מהנדס תוכנה בכיר בתחום מערכות AI ומוצר.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bar Achdut · Senior Software Engineer">
-<meta property="og:description" content="כתבו את שם החברה שלכם, וקורות החיים שלי יתלבשו בצבעים ובפונט שלה.">
-<meta property="og:image" content="https://barachdut.github.io/cv/og.png">
+<meta property="og:description" content="קורות החיים של בר אחדות, מהנדס תוכנה בכיר בתחום מערכות AI ומוצר.">
+<meta property="og:image" content="https://barachdut.github.io/cv/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1F2430">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -111,10 +111,7 @@ button, input { font: inherit; color: inherit; }
 .sugg { position: absolute; inset-inline: 0; top: calc(100% + 6px); background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: 6px; margin: 0; list-style: none; z-index: 5; box-shadow: 0 18px 40px -16px rgba(17,19,24,.3); }
 .sugg li { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 9px; cursor: pointer; }
 .sugg li[aria-selected="true"], .sugg li:hover { background: var(--tint); }
-.sugg .dot { width: 14px; height: 14px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
 .sugg .nm { font-weight: 500; direction: ltr; unicode-bidi: isolate; }
-.hint { font-size: 13.5px; color: var(--muted); margin: 0; min-height: 1.4em; }
-.hint button { background: none; border: 0; padding: 0; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-size: inherit; }
 
 /* actions */
 .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
@@ -171,8 +168,8 @@ button, input { font: inherit; color: inherit; }
 <main class="page" dir="rtl" lang="he">
   <header class="hero">
     <p class="eyebrow"><span>Bar Achdut · Senior Software Engineer · AI Systems</span></p>
-    <h1 id="h1">מאיזו חברה הגעת?</h1>
-    <p class="sub" id="sub">כתבו את שם החברה, וקורות החיים שלי יתלבשו בצבעים ובפונט שלה.</p>
+    <h1 id="h1">היי, מאיזו חברה הגעת?</h1>
+    <p class="sub" id="sub">אני בר, מהנדס תוכנה. אשמח לדעת עם מי אני מדבר.</p>
     <div class="ask">
       <form id="askForm" role="search" autocomplete="off">
         <input id="co" type="text" dir="auto" placeholder="שם החברה" aria-label="שם החברה" role="combobox" aria-autocomplete="list" aria-controls="sugg" aria-expanded="false" enterkeyhint="go" spellcheck="false">
@@ -180,7 +177,6 @@ button, input { font: inherit; color: inherit; }
       </form>
       <ul class="sugg" id="sugg" role="listbox" aria-label="חברות" hidden></ul>
     </div>
-    <p class="hint" id="hint"></p>
   </header>
 
   <nav class="actions" aria-label="פעולות">
@@ -209,13 +205,13 @@ button, input { font: inherit; color: inherit; }
   <div class="sheet-wrap"><article class="sheet" id="sheet" dir="ltr" lang="en"></article></div>
 
   <footer class="foot">
-    <p>את הכלי הזה בניתי בעצמי, כדי שקורות החיים יגיעו אליכם קצת יותר אישיים.</p>
+    <p>את האתר הזה בניתי בעצמי.</p>
     <div class="contact"><span id="fEmail"></span><span id="fPhone"></span></div>
   </footer>
 </main>
 <div class="toast" id="toast" role="status" hidden></div>
-<script src="data.js"></script>
+<script src="data.js?v=f58c4091"></script>
 <script src="vendor/jspdf.umd.min.js" defer></script>
-<script src="app.js"></script>
+<script src="app.js?v=e602a1d6"></script>
 </body>
 </html>

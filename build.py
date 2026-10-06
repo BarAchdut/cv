@@ -10,7 +10,8 @@ for stem, fam in names.items():
 css = "\n".join(faces) + "\n" + src('app.css')
 body = src('body.html')
 open(os.path.join(root, 'app.js'), 'w', encoding='utf8').write(src('app.js'))
-desc_he = "כתבו את שם החברה שלכם, וקורות החיים שלי יתלבשו בצבעים ובפונט שלה."
+# Link-preview text: must not reveal the brand re-skin (it is a surprise).
+desc_he = "קורות החיים של בר אחדות, מהנדס תוכנה בכיר בתחום מערכות AI ומוצר."
 head = f'''<!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -21,7 +22,7 @@ head = f'''<!doctype html>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bar Achdut · Senior Software Engineer">
 <meta property="og:description" content="{desc_he}">
-<meta property="og:image" content="https://barachdut.github.io/cv/og.png">
+<meta property="og:image" content="https://barachdut.github.io/cv/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1F2430">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -33,10 +34,11 @@ head = f'''<!doctype html>
 </head>
 <body>
 '''
-scripts = '<script src="data.js"></script>\n<script src="vendor/jspdf.umd.min.js" defer></script>\n<script src="app.js"></script>\n'
+# Content-hash query strings so returning visitors get new code right after a deploy.
+import hashlib
+ver = lambda p: hashlib.sha1(open(os.path.join(root, p), 'rb').read()).hexdigest()[:8]
+scripts = (f'<script src="data.js?v={ver("data.js")}"></script>\n'
+           '<script src="vendor/jspdf.umd.min.js" defer></script>\n'
+           f'<script src="app.js?v={ver("app.js")}"></script>\n')
 open(os.path.join(root, 'index.html'), 'w', encoding='utf8').write(head + body + scripts + '</body>\n</html>\n')
-# claude.ai preview page: content only (the host adds the document skeleton)
-os.makedirs(os.path.join(root, '..', 'preview'), exist_ok=True)
-page = f'<title>Bar Achdut CV</title>\n<style>\n{css}\n</style>\n' + body + scripts
-open(os.path.join(root, '..', 'preview', 'page.html'), 'w', encoding='utf8').write(page)
 print('built', len(head + body), 'bytes')

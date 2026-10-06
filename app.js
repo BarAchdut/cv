@@ -107,47 +107,39 @@
     r.setProperty("--f-cv", `"${t.font}", Arial, sans-serif`);
     r.setProperty("--f-cv-head", `"${t.headFont}", "${t.font}", Arial, sans-serif`);
     const h1 = $("#h1"), sub = $("#sub");
+    // Copy never mentions colors or design: the re-skin is the surprise.
     if (S.label) {
-      h1.innerHTML = `קורות החיים שלי, בצבעים של <span class="co ltr" dir="auto">${esc(S.label)}</span>`;
-      sub.textContent = S.co
-        ? "אפשר להוריד אותם כקובץ בעיצוב הזה, או לכתוב לי ישירות. אשמח לשמוע מכם."
-        : "עוד לא הכרתי את השפה העיצובית שלכם, אז הכנתי גרסה נקייה. אפשר להוריד אותה או לכתוב לי ישירות.";
-      $("#hint").innerHTML = `<button type="button" id="resetBtn">החלפת חברה</button>`;
-      $("#resetBtn").onclick = reset;
+      h1.innerHTML = `נעים להכיר, <bdi class="co">${esc(S.label)}</bdi>`;
+      sub.textContent = "קורות החיים שלי כאן למטה. אפשר להוריד אותם, או לכתוב לי ישירות.";
       document.title = `Bar Achdut · CV for ${S.label}`;
     } else {
-      h1.textContent = "מאיזו חברה הגעת?";
-      sub.textContent = "כתבו את שם החברה, וקורות החיים שלי יתלבשו בצבעים ובפונט שלה.";
-      $("#hint").innerHTML = `למשל: ${["Wix", "monday.com", "Check Point", "Bank Hapoalim"].map(n => `<button type="button" data-try="${esc(n)}" class="ltr">${esc(n)}</button>`).join(" · ")}`;
-      document.querySelectorAll("[data-try]").forEach(b => b.onclick = () => { $("#co").value = b.dataset.try; submit(); });
+      h1.textContent = "היי, מאיזו חברה הגעת?";
+      sub.textContent = "אני בר, מהנדס תוכנה. אשמח לדעת עם מי אני מדבר.";
       document.title = "Bar Achdut · CV";
     }
     updateLinks();
   }
 
-  let swapT = null;
+  /* Each call gets a generation number. A repeat call for the same company exits
+     before touching state, and a superseded call exits after its font wait, so the
+     newest call always paints the sheet and clears the fade. */
+  let gen = 0;
   async function setTheme(source, label, co) {
-    const same = S.source === source && S.label === label;
-    S.source = source; S.label = label; S.co = co || null;
+    if (S.source === source && S.label === label) return;
+    const my = ++gen;
     const next = themeOf(source);
     const fontChange = next.font !== S.theme.font || next.headFont !== S.theme.headFont;
-    S.theme = next;
-    if (same) return;
+    S.source = source; S.label = label; S.co = co || null; S.theme = next;
     applyChrome();
+    const sh = $("#sheet");
     if (fontChange && document.fonts && document.fonts.load) {
-      const sh = $("#sheet"); sh.classList.add("swap");
-      clearTimeout(swapT);
+      sh.classList.add("swap");
       try { await Promise.race([Promise.all([document.fonts.load(`400 16px "${next.font}"`), document.fonts.load(`700 16px "${next.headFont}"`)]), new Promise(r => setTimeout(r, 900))]); } catch (_) {}
-      if (S.theme !== next) return;
-      renderSheet();
-      swapT = setTimeout(() => sh.classList.remove("swap"), 30);
-    } else renderSheet();
+      if (my !== gen) return;
+    }
+    renderSheet();
+    sh.classList.remove("swap");
     if (label) scheduleNotify();
-  }
-  function reset() {
-    $("#co").value = ""; closeSugg();
-    setTheme(NEUTRAL, "", null);
-    $("#co").focus();
   }
 
   /* ---------- input + suggestions ---------- */
@@ -156,7 +148,7 @@
   function openSugg() {
     const ul = $("#sugg");
     if (!list.length) { closeSugg(); return; }
-    ul.innerHTML = list.map((co, i) => `<li role="option" id="opt${i}" aria-selected="${i === sel}" data-i="${i}"><span class="dot" style="background:${co.c}"></span><span class="nm">${esc(co.name)}</span></li>`).join("");
+    ul.innerHTML = list.map((co, i) => `<li role="option" id="opt${i}" aria-selected="${i === sel}" data-i="${i}"><span class="nm">${esc(co.name)}</span></li>`).join("");
     ul.hidden = false; $("#co").setAttribute("aria-expanded", "true");
     if (sel >= 0) $("#co").setAttribute("aria-activedescendant", "opt" + sel); else $("#co").removeAttribute("aria-activedescendant");
     ul.querySelectorAll("li").forEach(li => li.onmousedown = ev => { ev.preventDefault(); pick(list[+li.dataset.i]); });
@@ -166,7 +158,7 @@
     const q = $("#co").value;
     S.typed = q;
     const r = search(q);
-    list = r.list; sel = -1; openSugg();
+    list = r.exact && r.list.length === 1 ? [] : r.list; sel = -1; openSugg();
     const k = norm(q);
     const unique = r.list.length === 1 && k.length >= 4;
     if (r.exact) setTheme(r.exact, r.exact.name, r.exact);
