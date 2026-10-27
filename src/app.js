@@ -80,7 +80,6 @@
     const li = (label, text) => `<li>${label ? `<b>${esc(label)}:</b> ` : ""}${esc(text)}</li>`;
     sh.innerHTML = `
       <header class="sh-band">
-        ${S.label ? `<p class="sh-for" dir="auto">Prepared for the ${esc(S.label)} team</p>` : ""}
         <h2>${esc(CV.name)}</h2>
         <p class="sh-headline">${esc(CV.headline)}</p>
         <p class="sh-contacts">${CV.contacts.map(c => `<span>${esc(c)}</span>`).join("")}</p>
@@ -107,15 +106,14 @@
     r.setProperty("--f-cv", `"${t.font}", Arial, sans-serif`);
     r.setProperty("--f-cv-head", `"${t.headFont}", "${t.font}", Arial, sans-serif`);
     const h1 = $("#h1"), sub = $("#sub");
-    // Copy never mentions colors or design: the re-skin is the surprise.
+    // No meta text anywhere (page, CV, PDF, tab title): the re-skin speaks for itself.
     if (S.label) {
       h1.innerHTML = `נעים להכיר, <bdi class="co">${esc(S.label)}</bdi>`;
-      sub.textContent = "קורות החיים שלי כאן למטה. אפשר להוריד אותם, או לכתוב לי ישירות.";
-      document.title = `Bar Achdut · CV for ${S.label}`;
+      sub.hidden = true;
     } else {
       h1.textContent = "היי, מאיזו חברה הגעת?";
       sub.textContent = "אני בר, ויש לי מה להראות לך.";
-      document.title = "Bar Achdut · CV";
+      sub.hidden = false;
     }
     updateLinks();
   }
@@ -250,15 +248,13 @@
     }
     return stem;
   }
-  const latinOnly = s => !/[֐-׿؀-ۿ]/.test(s);
-
   async function buildPdf() {
     const { jsPDF } = window.jspdf;
     const t = S.theme;
     const pdf = new jsPDF({ unit: "pt", format: "a4", compress: true });
     const BF = await addFamily(pdf, t.font);
     const HF = t.headFont === t.font ? BF : await addFamily(pdf, t.headFont);
-    pdf.setProperties({ title: `${CV.name} - CV`, author: CV.name, subject: S.label ? `Prepared for ${S.label}` : CV.headline });
+    pdf.setProperties({ title: `${CV.name} - CV`, author: CV.name, subject: CV.headline });
     const W = 595.28, H = 841.89, M = 46, CW = W - 2 * M;
     const C = h => rgb(h), band = C(t.band), bandInk = C(t.bandInk), head = C(t.head), deco = C(t.deco);
     const PINK = [26, 29, 35], MUTE = [95, 101, 112];
@@ -292,12 +288,10 @@
       y += 13.5; pdf.setDrawColor(deco[0], deco[1], deco[2]); pdf.setLineWidth(0.7); pdf.line(M, y, W - M, y); y += 7.5;
     }
     // band
-    const forLine = S.label && latinOnly(S.label) ? `PREPARED FOR THE ${S.label.toUpperCase()} TEAM` : "";
-    const bandH = forLine ? 128 : 112;
+    const bandH = 112;
     pdf.setFillColor(band[0], band[1], band[2]); pdf.rect(0, 0, W, bandH, "F");
     if (t.stripe) { const s = C(t.stripe); pdf.setFillColor(s[0], s[1], s[2]); pdf.rect(0, bandH, W, 4, "F"); }
     y = 30;
-    if (forLine) { font(BF, "bold", 8.4, bandInk); pdf.text(forLine, M, y, { baseline: "top", charSpace: 1.2 }); y += 18; }
     font(HF, "bold", 26, bandInk); pdf.text(CV.name, M, y, { baseline: "top" }); y += 32;
     font(BF, "normal", 11.5, bandInk); pdf.text(CV.headline, M, y, { baseline: "top" }); y += 19;
     font(BF, "normal", 8.6, bandInk); pdf.text(CV.contacts.join("     "), M, y, { baseline: "top" });
@@ -347,8 +341,7 @@
     btn.querySelector(".l-long").textContent = "מכין קובץ…";
     try {
       const pdf = await buildPdf();
-      const safe = (S.label && latinOnly(S.label) ? S.label : "").replace(/[^A-Za-z0-9.]+/g, "_").replace(/^[_.]+|[_.]+$/g, "");
-      const ok = await deliver(pdf.output("blob"), `${CONFIG.fileBase}${safe ? "_for_" + safe : ""}.pdf`);
+      const ok = await deliver(pdf.output("blob"), `${CONFIG.fileBase}.pdf`);
       if (ok) { toast("הקובץ ירד"); notify(`PDF downloaded${S.label ? " · " + S.label : ""}`, `Visitor${S.label ? " from " + S.label : ""} downloaded your CV · ${device()}`, ["page_facing_up"]); }
     } catch (e) { toast("ההורדה נכשלה. נסו שוב."); }
     finally { btn.disabled = false; btn.querySelector(".l-long").textContent = old; }

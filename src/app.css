@@ -78,7 +78,6 @@ button, input { font: inherit; color: inherit; }
 .sheet.swap { opacity: .35; }
 .sheet * { margin: 0; }
 .sh-band { background: var(--band); color: var(--band-ink); margin: calc(var(--pad) * -1) calc(var(--pad) * -1) 0; padding: calc(var(--pt) * 30) var(--pad) calc(var(--pt) * 18); transition: background-color .6s, color .6s; border-bottom: calc(var(--pt) * 4) solid var(--stripe); }
-.sh-for { font-size: calc(var(--pt) * 8.4); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .85; margin-bottom: calc(var(--pt) * 8); }
 .sh-band h2 { font-family: var(--f-cv-head); font-size: calc(var(--pt) * 26); line-height: 1.1; font-weight: 700; letter-spacing: -.01em; }
 .sh-headline { font-size: calc(var(--pt) * 11.5); margin-top: calc(var(--pt) * 5); }
 .sh-contacts { font-size: calc(var(--pt) * 8.6); margin-top: calc(var(--pt) * 6); opacity: .9; display: flex; flex-wrap: wrap; column-gap: 1.6em; row-gap: .2em; }
