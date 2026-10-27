@@ -303,7 +303,7 @@
     CV.competencies.forEach(([l, tx]) => bullet([{ t: l + ": ", st: "bold" }, { t: tx }]));
     section("Work Experience");
     CV.experience.forEach((e, i) => {
-      ensure(LH * 3); if (i) y += 6;
+      ensure(LH * 6); if (i) y += 6;
       font(BF, "normal", 8.6, MUTE);
       const dw = pdf.getTextWidth(e.dates); pdf.text(e.dates, W - M - dw, y + 1, { baseline: "top" });
       rich([{ t: e.role, st: "bold" }, { t: "  |  " + e.org, col: head }], M, CW - dw - 12, 10.2, 13.5, PINK);

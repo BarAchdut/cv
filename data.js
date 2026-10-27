@@ -15,29 +15,29 @@ const CONFIG = {
 
 const CV = {
   name: "Bar Achdut",
-  headline: "Senior Software Engineer · AI Systems & Product",
+  headline: "Senior Software Engineer & Engineering Lead · Applied AI",
   contacts: ["achdut37@gmail.com", "053-337-0366", "Tel Aviv, Israel"],
-  profile: "Senior backend and full-stack engineer with 8+ years building production systems at scale, including 5 years in Unit 8200 (Head of Software Team, 10 engineers). Now operating at the intersection of software engineering and applied AI: designing, shipping and monetizing LLM-powered products end to end — from data model and RBAC to agent orchestration and go-to-market. Fluent in AI-native development workflows; equally comfortable owning a technical roadmap, a product spec, or a delivery team.",
+  profile: "Senior software engineer and engineering lead with 8+ years building production systems, including 5 years in Unit 8200, where I headed a 10-engineer software team. Everything I build today is AI-native: I design and ship LLM-powered products end to end, from data model and permissions to agents, tool use and structured outputs. I also build with AI: coding agents execute, while I own the architecture, specs and review. Founder of LiveBetter, a B2B SaaS whose core resident workflow runs on a production Hebrew WhatsApp AI agent. Equally at home leading a team, owning a roadmap or closing a partnership.",
   competencies: [
-    ["LLM Application Development", "Anthropic Claude API and OpenAI API — Tool Use / function calling, structured JSON outputs, streaming, system-prompt design, context-window and token-cost optimization."],
-    ["Agent Architecture", "Model Context Protocol (MCP) servers, multi-agent task decomposition, tool routing, guardrails and human-in-the-loop approval gates for high-risk actions."],
-    ["AI-Assisted Engineering", "Claude Code, Cursor and agentic CLI workflows as primary development environment; spec-driven delegation, automated code review, and AI-generated code quality standards for teams."],
-    ["RAG & Retrieval", "Embedding pipelines, vector search on Postgres/pgvector, chunking and retrieval strategy, grounding and hallucination mitigation, retrieval evaluation."],
-    ["Workflow Automation", "n8n, Make.com, webhook and event-driven pipelines; production messaging automation over WhatsApp Business API (Whapi.Cloud) and email."],
-    ["AI Product & Delivery", "Writing PRDs for AI features, defining eval harnesses and success metrics, latency/cost/quality trade-off analysis, prompt versioning, and scoping what an LLM should and should not own."],
-    ["Technical Leadership", "Driving AI adoption across engineering teams — tooling selection, data-residency and security review of AI vendors, and measurable developer-velocity improvement."]
+    ["LLM Engineering", "Claude and OpenAI APIs: tool use, structured outputs, streaming, prompt and context design, token-cost and latency trade-offs."],
+    ["Agentic Systems", "Agent architecture with MCP and the Claude Agent SDK, tool routing, guardrails, and human-in-the-loop approval for high-risk actions."],
+    ["Retrieval & Evaluation", "Embeddings and vector search on Postgres/pgvector, chunking and grounding strategy, eval sets and success metrics for LLM features."],
+    ["AI-Native Engineering", "Claude Code and Cursor as the primary environment: spec-driven delegation to coding agents, AI code review, and quality bars for AI-written code."],
+    ["AI Product", "PRDs for AI features, scoping what the model should and should not own, and the latency, cost and quality trade-offs behind it."],
+    ["Engineering Leadership", "Led a 10-engineer team; sprint and roadmap ownership; AI adoption, tooling selection, and security and data-residency review of AI vendors."]
   ],
   experience: [
     { role: "Founder & Technical Lead", org: "LiveBetter", context: "B2B SaaS for Residential Property Management", dates: "03/2026 – Present", bullets: [
-      "Built and shipped a multi-tenant SaaS platform end to end: Next.js, TypeScript, Tailwind, Supabase/PostgreSQL with row-level-security-enforced RBAC across six role types.",
-      "Designed and deployed a production WhatsApp AI agent (Claude Tool Use + Whapi.Cloud + Supabase) that triages resident maintenance requests in Hebrew, routes them to the correct handler, and writes structured tickets — removing manual intake entirely.",
-      "Negotiated and signed a payment-processing partnership with Cardcom, embedding automated collections and dunning into the product as a primary revenue layer.",
-      "Owned the full commercial stack alongside the technical one: competitive analysis, pricing and packaging, PRD, sales pipeline and enterprise-prospect security reviews (data residency, retention, reconciliation)."
+      "Built the product's core workflow as a production Hebrew WhatsApp AI agent (Claude Tool Use, Whapi.Cloud, Supabase) that triages resident maintenance requests, routes each one to the right handler and opens a structured ticket, removing manual intake entirely.",
+      "Architected and shipped the multi-tenant platform end to end (Next.js, TypeScript, Tailwind, Supabase/PostgreSQL) with row-level-security RBAC across six role types.",
+      "Building AI growth agents: an LLM-powered lead engine that discovers and qualifies new residential projects and drafts personalized Hebrew outreach, and a Claude Agent SDK agent that flags which pipeline leads need attention.",
+      "Negotiated and signed a payment-processing partnership with Cardcom, and built automated collections and dunning into the product as a primary revenue layer.",
+      "Owned the commercial stack, AI-first: competitive teardown of US HOA platforms, PRD, pricing and packaging, Hebrew proposals generated by custom agent skills, and enterprise security reviews (data residency, retention)."
     ] },
     { role: "Founder", org: "AI Automation Consulting", context: "", dates: "01/2025 – Present", bullets: [
-      "Deliver AI and automation systems to non-technical Israeli companies — scoping, building and handing off production workflows on n8n and Make.com with fixed build fee plus retainer.",
-      "Architected an air-gapped incident-investigation agent system for a defense-adjacent environment, delivered as an executive-level architecture proposal.",
-      "Packaged repeatable internal tooling as reusable agent skills (document generation, media conversion, pipeline analysis), cutting recurring delivery time to near zero."
+      "Design and deliver AI agents and workflow automations for non-technical Israeli companies, from scoping to production hand-off (LLM APIs, n8n, Make.com), on a fixed build fee plus retainer.",
+      "Designed an air-gapped incident-investigation agent system for a defense-adjacent environment and presented the architecture to executive leadership.",
+      "Built a library of reusable Claude Agent Skills (Hebrew business proposals, B2B lead-list building, Make.com scenario generation over MCP, sales-pipeline triage, scheduled-automation audits) that turn recurring delivery work into one-command agent runs."
     ] },
     { role: "Senior Backend Engineer", org: "Just Eat Takeaway.com", context: "", dates: "02/2023 – Present", stack: "C#, SQL Server, Python, OpenShift, Elasticsearch, Kibana, MQ", bullets: [
       "Designed and developed scalable backend systems handling large data flows and complex business logic.",
@@ -59,15 +59,16 @@ const CV = {
     ] }
   ],
   skills: [
-    ["AI & Agents", "Claude API, OpenAI API, MCP, Tool Use / function calling, RAG, pgvector, prompt engineering, evals, Claude Code, Cursor, n8n, Make.com"],
+    ["AI & Agents", "Claude API, OpenAI API, Claude Agent SDK, MCP, tool use, structured outputs, RAG, embeddings, pgvector, evals, prompt engineering, Claude Code, Cursor"],
+    ["Automation", "n8n, Make.com, webhooks, WhatsApp Business API (Whapi.Cloud)"],
     ["Languages", "C#, Python, TypeScript, JavaScript, SQL"],
     ["Frameworks", ".NET, React, Next.js, Node.js, Flask, Tailwind CSS"],
     ["Data", "PostgreSQL / Supabase (RLS), SQL Server, Oracle, Elasticsearch"],
-    ["Platform", "OpenShift, Docker, Kibana, MQ, CI/CD, REST APIs, webhooks, microservices"],
+    ["Platform", "OpenShift, Docker, CI/CD, REST APIs, microservices, MQ, Kibana"],
     ["Leadership & Product", "Team leadership, sprint and roadmap ownership, product specification, stakeholder communication, commercial negotiation"]
   ],
   education: [
-    "MBA — Tel Aviv University (in progress)",
+    "MBA, Business Administration & Entrepreneurship — Tel Aviv University (in progress)",
     "B.Sc. Computer Science — The College of Management Academic Studies",
     "IDF Officers School (BAHAD 1), 2019"
   ],
